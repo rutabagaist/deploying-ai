@@ -1,14 +1,17 @@
 import gradio as gr
-from horoscope_chat.main import horoscope_chat
+from main import horoscope_chat
 from dotenv import load_dotenv
 from typing import Optional
 import os
 
-from utils.logger import get_logger
+from logger import get_logger
+
+load_dotenv("../../.env")
+load_dotenv("../.secrets")
 
 _logs = get_logger(__name__)
 
-load_dotenv('.secrets')
+#load_dotenv('.secrets')
 
 chat = gr.ChatInterface(
     fn=horoscope_chat,

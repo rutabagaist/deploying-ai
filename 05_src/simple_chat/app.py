@@ -6,7 +6,7 @@ import os
 
 from langchain.chat_models import init_chat_model
 
-load_dotenv('.secrets')
+load_dotenv('./.secrets')
 
 if not os.environ.get("OPENAI_API_KEY"):
     raise ValueError("Missing OPENAI_API_KEY environment variable")

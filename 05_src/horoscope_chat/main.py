@@ -1,16 +1,16 @@
 from openai import OpenAI
 from dotenv import load_dotenv
-from horoscope_chat.prompts import return_instructions_root
+from prompts import return_instructions_root
 import json
 import requests
-from utils.logger import get_logger
+from logger import get_logger
 import os
 
 
 _logs = get_logger(__name__)
 
-load_dotenv(".env")
-load_dotenv(".secrets")
+load_dotenv("../../.env")
+load_dotenv("../.secrets")
 
 
 client = OpenAI()

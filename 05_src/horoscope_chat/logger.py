@@ -4,7 +4,8 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv("../../.env")
+load_dotenv("../.secrets")
 
 LOG_DIR = os.getenv('LOG_DIR', './logs/')
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')

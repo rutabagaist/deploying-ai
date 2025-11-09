@@ -1,4 +1,4 @@
-from animals_chat.main import get_animals_chat_agent
+from main import get_animals_chat_agent
 from langchain_core.messages import HumanMessage, AIMessage
 import gradio as gr
 from dotenv import load_dotenv
