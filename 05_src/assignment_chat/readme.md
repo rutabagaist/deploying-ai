@@ -7,7 +7,7 @@ This travel chatbot is an attempt to satisfy the requirements of assignment 2 as
 The chatbot uses the following tools:
 1. (API)an open-meteo API that converts city names to latitude and longitude
 2. (API) another open-meteo endpoint that takes the lat/lon and returns temperature, wind speed and current visibility
-3. (WebSearch) duckduckgo web search tool
+3. (WebSearch) duckduckgo web search tool from the Langchain_community toolkit
 4. (ChromaDB Semantic Search) a semantic query that relies on a ChromaDB database I created from the CMU Book Summary Dataset (https://www.cs.cmu.edu/~dbamman/booksummaries.html)
     - to create the embeddings I used code that I've placed into embeddings_create.py
 
@@ -36,4 +36,8 @@ I then added all the books into the ChromaDB collection and at the same time cre
 
 The instructions work fairly well. I find it difficult to sense the 'tone' I've requested unless it's something really discernable. I've tested the guardrails and they were respected in my attempts to jailbreak the chatbot.
 
-The combining of tool information with narrative is also pretty functional, as is the fail-safe in case one or more tools fails. 
+The combining of tool information with narrative is also pretty functional, as is the fail-safe in case one or more tools fails.
+
+### My notes:
+
+I've learned a lot from this course, and would like to have worked on this project for a bit longer. That said, I think I've accomplished what the assignment directions spelled out, even if it is a very rudimentary tool. 

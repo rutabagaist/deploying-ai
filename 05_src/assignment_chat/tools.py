@@ -10,9 +10,17 @@ import chromadb
 from chromadb.config import Settings
 from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
+#Class for the coords
 class Coordinates(BaseModel):
     latitude: float
     longitude: float
+
+# Class for the weather data
+class Weather(BaseModel):
+    Temperature: float
+    WindSpeed: float
+    Visibility: int
+    
 
 # This tool calls open-meteo to get coordinates for a city, because the weather API needs lat/lon to work.
 @tool
@@ -46,17 +54,20 @@ def get_weather(latitude, longitude):
     current = resp_dict.get("current", {})
     current_units = resp_dict.get("current_units", {})
     
-    temperature = current.get("temperature_2m", "N/A")
+    temperature = current.get("temperature_2m", 0.0)
     temp_unit = current_units.get("temperature_2m", "")
     
-    wind = current.get("wind_speed_10m", "N/A")
+    wind = current.get("wind_speed_10m", 0.0)
     wind_unit = current_units.get("wind_speed_10m", "")
     
-    visibility = current.get("visibility", "N/A")
+    visibility = current.get("visibility", 0)
     visibility_unit = current_units.get("visibility", "")
     
-    weather = f"Temperature: {temperature}{temp_unit}\nWind Speed: {wind} {wind_unit}\nVisibility: {visibility} {visibility_unit}"
-    return weather
+    return Weather(
+        Temperature = temperature,
+        WindSpeed = wind,
+        Visibility = visibility
+    )
 
 
 
@@ -69,7 +80,7 @@ def search_web(query: str):
     return str(results)  # Convert list to string for the LLM
 
 
-# This tool searces a list of 6000 book descriptions in our ChromaDB file store for a book recommendation that has something to do with the city we're visiting. See readme.MD for details on this DB lookup.
+# This tool searches a list of 6000 book descriptions in our ChromaDB file store for a book recommendation that has something to do with the city we're visiting. See readme.MD for details on this DB lookup.
 # Initialize the chroma db client. 
 @tool
 def get_book_reco(city: str):
